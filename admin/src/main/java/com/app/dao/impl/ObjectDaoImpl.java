@@ -40,7 +40,6 @@ public class ObjectDaoImpl<T> extends HibernateDaoHelp<T> implements ObjectDao<T
 
 
 
-	@Override
 	public List<T> findByList(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return super.findList(this.addParams(this.getQueryForHql(),params), params);
@@ -48,7 +47,6 @@ public class ObjectDaoImpl<T> extends HibernateDaoHelp<T> implements ObjectDao<T
 
 
 
-	@Override
 	public Long findCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return super.findLong(this.addParams(getCountFromHql(),params), params);
@@ -56,7 +54,6 @@ public class ObjectDaoImpl<T> extends HibernateDaoHelp<T> implements ObjectDao<T
 
 	
 	
-	@Override
 	public List<T> findPageList(PageBean bean, Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		PageUtil.validatePageBean(bean);
