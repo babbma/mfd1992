@@ -28,7 +28,6 @@ public class HibernateDaoHelp<T> {
 
 	protected Class<T> clazz;
 	//使用注解注入sessionfactory
-	@SuppressWarnings("restriction")
 	@Resource
 	private SessionFactory sessionFactory;
 
@@ -96,7 +95,7 @@ public class HibernateDaoHelp<T> {
 	}
 		
 	/**
-	 * 对象数组的分页查询
+	 * <p>对象数组的分页查询</p>
 	 * @param hql hql查询语句
 	 * @param bean 分页对象
 	 * @param params 参数
@@ -112,8 +111,8 @@ public class HibernateDaoHelp<T> {
 	
 	
 	/**
-	 * 查询单个对象
-	 * 按照主键查询
+	 * <p>查询单个对象</p>
+	 * <p>按照主键查询</p>
 	 * @param id 主键
 	 * @return 对象
 	 */
@@ -148,10 +147,10 @@ public class HibernateDaoHelp<T> {
 	
 	
 	/**
-	 * 将最原始的hql语句拼接条件
-	 * 按照paramsmap的集合来拼接
-	 * 只要存在对应的参数，就会将该属性添加到where条件中
-	 * 要确保map中的key值是在entity中的属性中是存在的
+	 * <p>将最原始的hql语句拼接条件</p>
+	 * <p>按照paramsmap的集合来拼接</p>
+	 * <p>只要存在对应的参数，就会将该属性添加到where条件中</p>
+	 * <p>要确保map中的key值是在entity中的属性中是存在的</p>
 	 * @param hql hql查询语句
 	 * @param params 参数
 	 * @return 拼接完成的语句

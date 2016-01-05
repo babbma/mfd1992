@@ -13,9 +13,9 @@
     <!-- Uncomment and add your base-package here:
          <context:component-scan
             base-package="org.springframework.samples.service"/>  -->
-    <context:component-scan base-package="com.zch.web"></context:component-scan>
-	<context:component-scan base-package="com.zch.service"></context:component-scan>
-	<context:component-scan base-package="com.zch.dao"></context:component-scan>
+	<context:component-scan base-package="com.app.service"></context:component-scan>
+	<context:component-scan base-package="com.app.dao"></context:component-scan>
+	
     <context:property-placeholder file-encoding="utf-8" location="classpath:jdbc.properties"/>
     
 	<bean id="dataSource"
@@ -30,7 +30,7 @@
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
-		<property name="packagesToScan" value="com.zch.entity"></property>
+		<property name="packagesToScan" value="com.app.entity"></property>
 	</bean>
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -48,7 +48,7 @@
 	</tx:advice>
 	<!-- 切片 -->
 	<aop:config>
-		<aop:pointcut expression="execution(* com.zch.service.impl.*.*(..))"
+		<aop:pointcut expression="execution(* com.app.service.impl.*.*(..))"
 			id="a" />
 		<aop:advisor advice-ref="adv" pointcut-ref="a" />
 	</aop:config>
