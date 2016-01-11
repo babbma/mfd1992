@@ -10,7 +10,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.dao.EmployeeDao;
 import com.app.dao.UserDao;
+import com.app.entity.Employee;
+import com.app.entity.config.Contants;
+import com.app.util.MD5Util;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional(value="transactionManager")
@@ -20,9 +24,21 @@ public class SpringTest {
 	@Resource
 	private UserDao userDao;
 
+	@Resource
+	private EmployeeDao employeeDao;
 	@Test
 	public void test() {
 		userDao.findByList(new HashMap<String, Object>());
+	}
+	
+	@Test
+	public void insertAdmin(){
+		Employee emp = new Employee();
+		emp.setPhone("admin");
+		emp.setName("admin");
+		emp.setPwd(MD5Util.MD5("admin"));
+		emp.setRole(Contants.ADMIN);
+		employeeDao.save(emp);
 	}
 
 }

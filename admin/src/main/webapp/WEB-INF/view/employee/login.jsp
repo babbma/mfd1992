@@ -13,7 +13,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<title>欢迎使用后台管理系统</title>
 	<script type="text/javascript" src="resource/js/jquery-1.11.0.min.js"></script>
 	<%@ include file="/WEB-INF/imp/validate.jsp" %>
-	<%@ include file="/WEB-INF/imp/bootstrap.jsp" %>
+	<%-- <%@ include file="/WEB-INF/imp/bootstrap.jsp" %> --%>
+	<script type="text/javascript">
+	$(function(){
+		$('#from_login').validate({
+			rules:{
+				'phone':{
+					required:true,
+					maxlength:11,
+					minlength:5
+					},
+				'pwd':{
+					required:true,
+					maxlength:10,
+					minlength:5
+				}
+			}
+		});
+	});
+	</script>
 </head>
 <body>
 
@@ -43,10 +61,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</s:if> -->
 			
-			<form class="form-signin" action="emp/login" method="post">
+			<form class="form-signin" action="emp/login" method="post" id="from_login">
 				<h2 class="form-signin-heading">后台系统登录</h2>
-				<input name="master.uname" type="text" class="input-block-level" placeholder="用户名">
-				<input name="master.pwd" type="password" class="input-block-level" placeholder="密码">
+				<input name="phone" type="text" class="input-block-level" placeholder="手机号码或者用户名">
+				<input name="pwd" type="password" class="input-block-level" placeholder="密码">
 				<label class="checkbox">
 					<input type="checkbox" value="remember-me"> 记住用户
 				</label>
