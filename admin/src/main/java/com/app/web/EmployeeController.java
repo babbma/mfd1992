@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.app.entity.Employee;
 import com.app.service.EmployeeService;
 
 /**
@@ -31,6 +32,17 @@ public class EmployeeController {
 	public String urlPath(@PathVariable("path")String path){
 		log.info("request path {}" ,path);
 		return "employee/"+path;
+	}
+	
+	/**
+	 * 登陆
+	 * @param emp
+	 * @return
+	 */
+	@RequestMapping("/login")
+	public String login(Employee emp){
+		log.info("login method");
+		return "redirect:/emp/page/login";
 	}
 	
 	

@@ -1,5 +1,8 @@
 package com.app.service;
 
-public interface EmployeeService {
+import com.app.entity.Employee;
+import com.app.exception.CustomException;
 
+public interface EmployeeService {
+	public Employee login(Employee emp)throws CustomException;
 }
