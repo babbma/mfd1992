@@ -85,17 +85,19 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         <url-pattern>/*</url-pattern>  
     </filter-mapping>  
 
-
 	<servlet-mapping>
-	    <servlet-name>default</servlet-name>
-	    <url-pattern>*.js</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-	    <servlet-name>default</servlet-name>
-	    <url-pattern>*.css</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-	    <servlet-name>default</servlet-name>
-	    <url-pattern>*.png</url-pattern>
-	</servlet-mapping>
+		<servlet-name>default</servlet-name>
+	    <url-pattern>/resource/js/*</url-pattern>
+	    <url-pattern>/resource/css/*</url-pattern>
+	    <url-pattern>/resource/images/*</url-pattern>
+	    <url-pattern>/resource/fonts/*</url-pattern>
+	  </servlet-mapping>
+	  <error-page>
+    <error-code>404</error-code>
+    <location>/resource/error/404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/resource/error/500.jsp</location>
+  </error-page>
 </web-app>

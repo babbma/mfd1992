@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -70,7 +71,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</label>
 				<button class="btn btn-large btn-primary" type="submit">登录</button>
 			</form>
-
+			<c:if test="${msg!=null }">
+				<p>错误信息,${msg }</p>
+			</c:if>
 		</div>
 </body>
 </html>

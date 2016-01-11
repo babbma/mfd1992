@@ -22,5 +22,24 @@
 	        <property name="suffix" value=".jsp"/>
 	</bean>
 	<context:component-scan base-package="com.app.web"></context:component-scan>
+	
+	
+	 <!--配置拦截器, 多个拦截器,顺序执行 -->   
+    <mvc:interceptors> 
+        <!-- <mvc:interceptor>    
+            匹配的是url路径    
+            <mvc:mapping path="/" />  
+            <bean class="com.touzi.interceptor.MyInterceptor"></bean>    
+        </mvc:interceptor>    -->
+        <mvc:interceptor>    
+            <!-- 匹配的是url路径  --> 
+            <mvc:mapping path="/" /> 
+            <!-- <mvc:mapping path="/user/**" />  
+            <mvc:mapping path="/test/**" />   -->
+              
+            <bean class="com.app.intercepter.CommonInterceptor"></bean>    
+        </mvc:interceptor>  
+        <!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->  
+    </mvc:interceptors>
 
 </beans>

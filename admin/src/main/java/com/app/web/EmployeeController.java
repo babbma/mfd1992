@@ -5,8 +5,11 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.entity.Employee;
 import com.app.service.EmployeeService;
@@ -18,6 +21,7 @@ import com.app.service.EmployeeService;
  */
 @Controller
 @RequestMapping("/emp")
+@SessionAttributes("session")
 public class EmployeeController {
 	private static final Logger log =LoggerFactory.getLogger(EmployeeController.class);
 
@@ -40,9 +44,20 @@ public class EmployeeController {
 	 * @return
 	 */
 	@RequestMapping("/login")
-	public String login(Employee emp){
+	public String login(Employee emp,ModelMap model,RedirectAttributes attr){
 		log.info("login method");
-		return "redirect:/emp/page/login";
+		try{
+			Employee e = employeeService.login(emp);
+			model.addAttribute("session", e);
+			return "redirect:/emp/page/index";
+		} catch (Exception e) {
+			// TODO: handle exception
+//			model.addAttribute("msg",e.getMessage());
+			attr.addFlashAttribute("msg", e.getMessage());
+			log.error(e.getMessage());
+			return "redirect:/emp/page/login";
+		}
+		
 	}
 	
 	

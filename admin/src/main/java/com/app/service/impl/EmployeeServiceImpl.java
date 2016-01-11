@@ -37,7 +37,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			throw new CustomException("发生未知异常！",e);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(),e);
 		}
 	}
 
