@@ -28,6 +28,7 @@ public class Area implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	private Integer level;
 	@Column(name="parent_id")
 	private Integer parentId;
 	public Integer getId() {
@@ -47,6 +48,12 @@ public class Area implements Serializable {
 	}
 	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
+	}
+	public Integer getLevel() {
+		return level;
+	}
+	public void setLevel(Integer level) {
+		this.level = level;
 	}
 	
 }
