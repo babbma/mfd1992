@@ -53,7 +53,7 @@ public class EmployeeController {
 		} catch (Exception e) {
 			// TODO: handle exception
 //			model.addAttribute("msg",e.getMessage());
-			attr.addFlashAttribute("msg", e.getMessage());
+			attr.addFlashAttribute("message", e.getMessage());
 			log.error(e.getMessage());
 			return "redirect:/emp/page/login";
 		}

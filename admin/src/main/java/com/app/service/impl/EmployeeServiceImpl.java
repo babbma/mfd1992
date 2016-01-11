@@ -37,7 +37,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			throw new CustomException(e.getMessage(),e);
 		}
 	}
