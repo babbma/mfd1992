@@ -5,7 +5,7 @@
 <%@include file="/WEB-INF/imp/meta.jsp"%>
 <%@include file="/WEB-INF/imp/easyui.jsp"%>
 
-<link rel="stylesheet" type="text/css" href="${path}/resource/css/styles.css">
+<link rel="stylesheet" type="text/css" href="resource/css/styles.css">
 
 </head>
 <body>

@@ -3,11 +3,12 @@
 <html>
 <head>
 <title>后台管理系统</title>
+<%@include file="/WEB-INF/imp/meta.jsp"%>
 <%@include file="/WEB-INF/imp/easyui.jsp"%>
 <script type="text/javascript">
 	$(function() {
 		$('#mainMenu').tree({
-			url : path+'/menu/getMenu',
+			url : 'menu/getMenu',
 			parentField : 'pid',
 			onClick : function(node) {
 				if (node.attributes.url) {
@@ -44,7 +45,7 @@
         	</div>
         	<div style="float:right;margin: 5px 50px 0 0;font-size:14px;color:#fff;">
         		欢迎您，${sessionScope.u.phone}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        		<a href="${path}/emp/logout" style="color: #fff;text-decoration: none;">退出</a>
+        		<a href="emp/logout" style="color: #fff;text-decoration: none;">退出</a>
         	</div>
         </div>  
         
