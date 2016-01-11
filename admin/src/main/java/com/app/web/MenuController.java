@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.app.entity.Employee;
 import com.app.entity.config.Constant;
 import com.app.entity.easyui.Tree;
 
 @Controller
+@SessionAttributes("u")
 @RequestMapping("/menu")
 public class MenuController {
 
@@ -50,11 +52,11 @@ public class MenuController {
 	
 	@ResponseBody
 	@RequestMapping("/getMenu")
-	public List<Tree> getMenu(@RequestParam(required=false)Integer id,@ModelAttribute("session")Employee emp){
+	public List<Tree> getMenu(@RequestParam(required=false)Integer id,@ModelAttribute("u")Employee emp){
 		if(id==null){
 			id=-1;
 		}
-		boolean admin = emp.getRole()== Constant.ADMIN ;
+		boolean admin = emp.getRole().intValue()== Constant.ADMIN.intValue() ;
 		return getNodeListByPid(id, admin);
 	}
 }

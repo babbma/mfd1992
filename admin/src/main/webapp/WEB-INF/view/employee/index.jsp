@@ -43,7 +43,7 @@
         		后台管理系统
         	</div>
         	<div style="float:right;margin: 5px 50px 0 0;font-size:14px;color:#fff;">
-        		欢迎您，${sessionScope.session.phone}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        		欢迎您，${sessionScope.u.phone}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         		<a href="${path}/emp/logout" style="color: #fff;text-decoration: none;">退出</a>
         	</div>
         </div>  

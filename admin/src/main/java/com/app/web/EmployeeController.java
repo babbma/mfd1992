@@ -21,7 +21,7 @@ import com.app.service.EmployeeService;
  */
 @Controller
 @RequestMapping("/emp")
-@SessionAttributes("session")
+@SessionAttributes("u")
 public class EmployeeController {
 	private static final Logger log =LoggerFactory.getLogger(EmployeeController.class);
 
@@ -48,7 +48,7 @@ public class EmployeeController {
 		log.info("login method");
 		try{
 			Employee e = employeeService.login(emp);
-			model.addAttribute("session", e);
+			attr.addFlashAttribute("u", e);
 			return "redirect:/emp/page/index";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -58,6 +58,17 @@ public class EmployeeController {
 			return "redirect:/emp/page/login";
 		}
 		
+	}
+	/**
+	 * 退出系统的方法
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/logout")
+	public String loginout(ModelMap model){
+		log.info("logout method");
+		model.remove("u");
+		return "employee/login";
 	}
 	
 	

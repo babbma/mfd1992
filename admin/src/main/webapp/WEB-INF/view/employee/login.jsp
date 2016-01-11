@@ -13,8 +13,8 @@
 		<div class="container">
 			<h1>后台管理系统</h1>
 			<form class="form" action="${path}/emp/login" method="post">
-				<input type="text" placeholder="请输入用户名" id="phone" name="phone" required="required">
-				<input type="password" placeholder="请输入密码" id="pwd" name="pwd" required="required">
+				<input type="text" placeholder="请输入用户名" id="phone" name="phone" required="required" value="admin">
+				<input type="password" placeholder="请输入密码" id="pwd" name="pwd" required="required" value="admin">
 				<button type="submit" id="login-button">登录</button>
 			</form>
 			<c:if test="${message!=null}">
