@@ -9,11 +9,7 @@
 
 </head>
 <body>
-		<c:if test="${message!=null}">
-									${message}
-								</c:if>
 	<div class="wrapper">
-
 		<div class="container">
 			<h1>后台管理系统</h1>
 			<form class="form" action="${path}/emp/login" method="post">
@@ -21,6 +17,9 @@
 				<input type="password" placeholder="请输入密码" id="pwd" name="pwd" required="required">
 				<button type="submit" id="login-button">登录</button>
 			</form>
+			<c:if test="${message!=null}">
+				${message}
+			</c:if>
 		</div>
 		
 		<ul class="bg-bubbles">

@@ -6,7 +6,7 @@ package com.app.entity.config;
  * @author Administrator
  *
  */
-public class Contants {
+public class Constant {
 
 	/**
 	 * 超级管理员

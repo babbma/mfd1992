@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.app.dao.EmployeeDao;
 import com.app.dao.UserDao;
 import com.app.entity.Employee;
-import com.app.entity.config.Contants;
+import com.app.entity.config.Constant;
 import com.app.util.MD5Util;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,7 +37,7 @@ public class SpringTest {
 		emp.setPhone("admin");
 		emp.setName("admin");
 		emp.setPwd(MD5Util.MD5("admin"));
-		emp.setRole(Contants.ADMIN);
+		emp.setRole(Constant.ADMIN);
 		employeeDao.save(emp);
 	}
 
