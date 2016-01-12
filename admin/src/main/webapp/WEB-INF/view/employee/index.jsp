@@ -11,7 +11,7 @@
 			url : 'menu/getMenu',
 			parentField : 'pid',
 			onClick : function(node) {
-				if (node.attributes.url) {
+				if (node.attributes &&  node.attributes.url!=null && node.attributes.url) {
 					var src = path + node.attributes.url;
 					if (!$.startWith(node.attributes.url, '/')) {	//不是本项目的url，例如www.baidu.com
 						src = node.attributes.url;

@@ -13,4 +13,8 @@ public interface EmployeeService {
 	DataGrid findPageList(PageHelper helper,Map<String, Object> params);
 	
 	void save(Employee emp,Integer[] area)throws CustomException;
+	void update(Employee emp,Integer[] area)throws CustomException;
+	
+	Employee findById(Integer id);
+	void delete(Integer id)throws CustomException;
 }

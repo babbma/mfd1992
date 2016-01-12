@@ -104,6 +104,72 @@ public class EmployeeServiceImpl implements EmployeeService {
 			throw new CustomException(e.getMessage(),e);
 		}
 	}
+	@Override
+	public void update(Employee emp, Integer[] area) throws CustomException {
+		// TODO Auto-generated method stub
+		try {
+			Employee toupdate = employeeDao.findById(emp.getId());
+			
+			Map<String, Object> params = new HashMap<String, Object>();
+			//检查手机号码是否存在
+			params.put("phone",emp.getPhone() );
+			params.put("notid", emp.getId());
+			Long cnt = employeeDao.findCount(params);
+			if(cnt >0){
+				throw new CustomException("该账号已经存在！");
+			}
+			
+			
+			if(emp.getJobNumber()!=null && !"".equals(emp.getJobNumber())){
+				toupdate.setJobNumber(emp.getJobNumber());
+			}
+			if(emp.getName()!=null && !"".equals(emp.getName())){
+				toupdate.setName(emp.getName());
+			}
+			if(emp.getPwd()!=null && !"".equals(emp.getPwd())){
+				toupdate.setPwd(MD5Util.MD5(emp.getPwd()));
+			}
+			toupdate.setPhone(emp.getPhone());
+			
+			employeeDao.update(toupdate);
+			
+			toupdate.getArea().removeAll(toupdate.getArea());
+			//添加管理的区域
+			if(area!=null && area.length!=0){
+				params.clear();
+				params.put("ids", area);
+				List<Area> areas =areaDao.findByList(params);
+				
+				toupdate.getArea().addAll(areas);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new CustomException(e.getMessage(),e);
+		}
+	}
+	@Override
+	public Employee findById(Integer id) {
+		// TODO Auto-generated method stub
+		return employeeDao.findById(id);
+	}
+	
+	@Override
+	public void delete(Integer id) throws CustomException {
+		// TODO Auto-generated method stub
+		try {
+			Employee emp = employeeDao.findById(id);
+			if(emp.getStore()!=null && !emp.getStore().isEmpty()){
+				throw new CustomException("该员工有对应门店关联，请变更后操作！");
+			}
+			if(emp.getArea()!=null && !emp.getArea().isEmpty()){
+				emp.getArea().removeAll(emp.getArea());
+			}
+			employeeDao.delete(emp);
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new CustomException(e.getMessage(),e);
+		}
+	}
 	
 	
 	

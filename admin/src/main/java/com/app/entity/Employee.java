@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,13 +43,13 @@ public class Employee implements Serializable {
 	 */
 	private String name;
 	private Integer role;
-	@ManyToMany(targetEntity=Store.class)
+	@ManyToMany(targetEntity=Store.class,fetch=FetchType.LAZY)
 	@JoinTable(joinColumns={@JoinColumn(name="emplpoyee_id")},
 				inverseJoinColumns={@JoinColumn(name="store_id")},
 				name="store_sale")
 	private Set<Store> store ;
 	
-	@ManyToMany(targetEntity=Area.class)
+	@ManyToMany(targetEntity=Area.class,fetch=FetchType.LAZY)
 	@JoinTable(joinColumns={@JoinColumn(name="emplpoyee_id")},
 				inverseJoinColumns={@JoinColumn(name="area_id")},
 				name="area_sale")

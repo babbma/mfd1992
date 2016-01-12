@@ -23,6 +23,15 @@ function editGoodsCategory(){
  		var id = row.id;
 	 	$('#dlg').dialog('open').dialog('setTitle','编辑管理员');
 	 	$('#fm').form('load',row);//这句话有问题，第一次加载时正确的，第二次就出错了，还保持第一次的数据
+	 	$.post('emp/empareas',{id:id},function(data){
+	 		if(data){
+	 			var ids = [];
+	 			for(var i =0 ;i < data.length ;i ++){
+	 				ids.push(data[i].id);
+	 			}
+	 			$('#area').combobox('setValues',ids);
+	 		}
+	 	},'json');
 	 	url = "emp/edit?id="+id;
 	 	mesTitle = '编辑管理员成功';
  	}else{
@@ -37,10 +46,17 @@ function deleteGoodsCategory(){
 			return;
 		}
  		var id = row.id;
-	 	//$('#dlg').dialog('open').dialog('setTitle','删除项目类别');
-	 	$('#fm').form('load',row);//这句话有问题，第一次加载时正确的，第二次就出错了，还保持第一次的数据
-	 	url = "emp/delete?id="+id;
-	 	saveGoodsCategory();
+ 		$.get('emp/delete',{id:id},function(result){
+			if (result.success){
+			 	$('#datagrid').datagrid('reload'); 
+			} else {
+				 mesTitle = '新增管理员失败';
+			}
+			$.messager.show({ 
+				 title: mesTitle,
+				 msg: result.msg
+			});
+ 		},'json');
 	 	mesTitle = '删除管理员成功';
  	}else{
  		$.messager.alert('提示', '请选择要删除的管理员！', 'error');
@@ -50,7 +66,18 @@ function deleteGoodsCategory(){
 function saveGoodsCategory(){
  	$('#fm').form('submit',{
 	 	url: url,
-	 	onSubmit: function(){
+	 	onSubmit: function(params){
+	 		var as = $('#area').combobox('getValues')
+	 		$('#areas_').empty();
+	 		if(as!=null && as.length !=0 ){
+	 			for(var i = 0 ;i <as.length ;i ++){
+	 				$('#areas_').append($('<input>',{
+		 				type:'hidden',
+		 				name:'areas',
+		 				value:as[i]
+		 			}));
+	 			}
+	 		} 
 	 		return $(this).form('validate');
 	 	},
 		success: function(result){
@@ -110,7 +137,7 @@ function saveGoodsCategory(){
 					<label>手机号码:</label> <input name="phone" class="easyui-textbox" size="20" required="true">
 				</div>
 				<div class="fitem">
-					<label>管理区域:</label> <input name="area" class="easyui-combobox" size="20"
+					<label>管理区域:</label> <input id="area" class="easyui-combobox" size="20"
 					data-options="valueField:'id',textField:'name',url:'area/plist',multiple:true,required:true"
 					>
 				</div>
@@ -122,6 +149,10 @@ function saveGoodsCategory(){
 				</div>
 				<div class="fitem">
 					<label>姓&nbsp;&nbsp;名:</label> <input name="name" class="easyui-textbox" size="20" >
+				</div>
+				<div class="fitem" id="areas_">
+					<input type="hidden" name="areas[0]" value="1"/>
+					<input type="hidden" name="areas[1]" value="5"/>
 				</div>
 				
 			</form>
