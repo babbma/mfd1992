@@ -16,7 +16,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="order")
+@Table(name="`order`")
 public class Order implements Serializable {
 
 	/**
@@ -34,6 +34,7 @@ public class Order implements Serializable {
 	private Double totalPrice;
 	@Column(name="express_fee")
 	private Double expressFee;
+	@Column(name="address_id")
 	private Integer addressId;
 	@Column(name="logistics_company")
 	private String logisticsCompany;

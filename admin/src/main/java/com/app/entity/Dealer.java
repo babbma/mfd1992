@@ -2,12 +2,17 @@ package com.app.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -42,6 +47,11 @@ public class Dealer implements Serializable {
 	private String text1;
 	private String text2;
 	private String text3;
+	@ManyToMany(targetEntity=Area.class,fetch=FetchType.LAZY)
+	@JoinTable(joinColumns={@JoinColumn(name="dealer_id")},
+				inverseJoinColumns={@JoinColumn(name="area_id")},
+				name="dealer_area")
+	private Set<Area> area ;
 	public Integer getId() {
 		return id;
 	}
@@ -126,5 +136,13 @@ public class Dealer implements Serializable {
 	public void setText3(String text3) {
 		this.text3 = text3;
 	}
+	public Set<Area> getArea() {
+		return area;
+	}
+	public void setArea(Set<Area> area) {
+		this.area = area;
+	}
+	
+	
 	
 }

@@ -1,7 +1,5 @@
 package admin;
 
-import java.util.HashMap;
-
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -12,9 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.dao.EmployeeDao;
 import com.app.dao.UserDao;
-import com.app.entity.Employee;
-import com.app.entity.config.Constant;
-import com.app.util.MD5Util;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional(value="transactionManager")
@@ -28,17 +23,17 @@ public class SpringTest {
 	private EmployeeDao employeeDao;
 	@Test
 	public void test() {
-		userDao.findByList(new HashMap<String, Object>());
+//		userDao.findByList(new HashMap<String, Object>());
 	}
 	
 	@Test
 	public void insertAdmin(){
-		Employee emp = new Employee();
-		emp.setPhone("admin");
-		emp.setName("admin");
-		emp.setPwd(MD5Util.MD5("admin"));
-		emp.setRole(Constant.SUPERADMIN);
-		employeeDao.save(emp);
+//		Employee emp = new Employee();
+//		emp.setPhone("admin");
+//		emp.setName("admin");
+//		emp.setPwd(MD5Util.MD5("admin"));
+//		emp.setRole(Constant.SUPERADMIN);
+//		employeeDao.save(emp);
 	}
-
+	
 }
