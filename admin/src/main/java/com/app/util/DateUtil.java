@@ -58,24 +58,17 @@ public class DateUtil {
 		Date date=sdf.parse(dateStr);
 		return date.getTime();
 	}
-	
-	public static void main(String args[]){
-		try {
-			
-			Calendar calc = Calendar.getInstance();
-			calc.setTime(new Date());
-			calc.set(Calendar.HOUR_OF_DAY,0);
-			calc.set(Calendar.MINUTE,0);
-			calc.set(Calendar.SECOND,0);
-			calc.set(Calendar.MILLISECOND,0);
-			System.out.println(toDateString(calc.getTimeInMillis(),"yyyy-MM-dd HH:mm:ss"));
-			
-//			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-//			
-//			System.out.println(sdf.format(1447257600000L));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	/**
+	 * 当天的开始时间
+	 * @return
+	 */
+	public static Date currentDayBegin(){
+		Calendar calc = Calendar.getInstance();
+		calc.setTime(new Date());
+		calc.set(Calendar.HOUR_OF_DAY,0);
+		calc.set(Calendar.MINUTE,0);
+		calc.set(Calendar.SECOND,0);
+		calc.set(Calendar.MILLISECOND,0);
+		return calc.getTime();
 	}
 }

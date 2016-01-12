@@ -31,7 +31,7 @@ import com.app.service.EmployeeService;
  */
 @Controller
 @RequestMapping("/emp")
-@SessionAttributes("u")
+@SessionAttributes(value={"u","as"})
 public class EmployeeController {
 	private static final Logger log =LoggerFactory.getLogger(EmployeeController.class);
 
@@ -59,6 +59,8 @@ public class EmployeeController {
 		try{
 			Employee e = employeeService.login(emp);
 			attr.addFlashAttribute("u", e);
+			log.info("area info {}",e.getArea());
+			attr.addFlashAttribute("as", e.getArea());
 			return "redirect:/emp/page/index";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -78,6 +80,7 @@ public class EmployeeController {
 	public String loginout(ModelMap model){
 		log.info("logout method");
 		model.remove("u");
+		model.remove("as");
 		return "employee/login";
 	}
 	

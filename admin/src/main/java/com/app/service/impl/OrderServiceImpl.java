@@ -54,7 +54,12 @@ public class OrderServiceImpl implements OrderService{
 		List<Object[]> list = orderDao.pageList(bean, params);
 		List<OrderDG> dgList = new ArrayList<OrderDG>();
 		for(Object[] item:list){
-			dgList.add(new OrderDG((Order)item[0],(OrderList)item[1],(Product)item[2],(Dealer)item[3],(Store)item[4]));
+			Order order = (Order)item[0];
+			OrderList orderList = (OrderList)item[1];
+			Product product = (Product)item[2];
+			Dealer dealer = (Dealer)item[3];
+			Store store  = (Store)item[4];
+			dgList.add(new OrderDG(order.getId(),order,orderList,product,dealer,store));
 		}
 		dg.setRows(dgList);
 		return dg;

@@ -37,20 +37,26 @@ public class OrderDaoImpl extends ObjectDaoImpl<Order> implements OrderDao {
 		if(params.containsKey("areaIds")){
 			temp+=" and d.area.id in (:areaIds)";
 		}
+		if(params.containsKey("ostatus")){
+			temp+=" and o.status = :ostatus";
+		}
 		if(params.containsKey("beginTime")){
 			temp+=" and o.orderDate >=:beginTime";
 		}
 		if(params.containsKey("endTime")){
-			temp+=" and o.orderDate <=endTime";
+			temp+=" and o.orderDate <=:endTime";
 		}
 		if(params.containsKey("likeCode")){
-			temp+=" and o.code like '%:likeCode%'";
+			temp+=" and o.code like :likeCode";
+			params.put("likeCode", "'%"+params.get("likeCode")+"%'");
 		}
 		if(params.containsKey("likeDealerName")){
-			temp+=" and d.name  like '%:likeDealerName%'";
+			temp+=" and d.name  like :likeDealerName";
+			params.put("likeDealerName", "'%"+params.get("likeDealerName")+"%'");
 		}
 		if(params.containsKey("likeStoreName")){
-			temp+=" and s.name like '%:likeStoreName%'";
+			temp+=" and s.name like :likeStoreName";
+			params.put("likeStoreName", "'%"+params.get("likeStoreName")+"%'");
 		}
 		return temp;
 	}

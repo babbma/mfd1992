@@ -20,6 +20,7 @@ public class OrderDG implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Integer id;
 	private Order order;
 	private OrderList orderList;
 	private Product product;
@@ -30,8 +31,9 @@ public class OrderDG implements Serializable{
 	public OrderDG() {
 		super();
 	}
-	public OrderDG(Order order, OrderList orderList, Product product, Dealer dealer, Store store) {
+	public OrderDG(Integer id,Order order, OrderList orderList, Product product, Dealer dealer, Store store) {
 		super();
+		this.id = id;
 		this.order = order;
 		this.orderList = orderList;
 		this.product = product;
