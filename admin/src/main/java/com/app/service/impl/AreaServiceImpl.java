@@ -20,13 +20,16 @@ public class AreaServiceImpl implements AreaService {
 	public List<Area> findCityList(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		//添加区分城市的参数
+		params.put("level", 1);
 		return areaDao.findByList(params);
 	}
 
 	@Override
 	public List<Area> findProvinceList(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return null;
+		//添加省份的参数
+		params.put("level", 0);
+		return areaDao.findByList(params);
 	}
 
 	

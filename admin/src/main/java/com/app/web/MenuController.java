@@ -25,11 +25,11 @@ public class MenuController {
 	static{
 		
 		map.put(1, new Tree(1, "所有菜单", "closed",null,-1));
-		map.put(11, new Tree(11, "管理员管理","closed",null, 1));
-		map.put(12, new Tree(12, "订单管理","open",null, 1).setAttr("url", "order/list"));
-		map.put(13, new Tree(13, "商品管理","open",null, 1).setAttr("url", "product/list"));
-		map.put(111, new Tree(111,"管理员列表","open",null,11).setAttr("url", "emp/page/list"));
-		map.put(112, new Tree(112,"新增管理员","open",null,11).setAttr("url", "emp/page/add"));
+		map.put(11, new Tree(11, "管理员管理","open",null, 1).setAttr("url", "emp/page/list"));
+		map.put(12, new Tree(12, "订单管理","open",null, 1).setAttr("url", "order/page/list"));
+		map.put(13, new Tree(13, "商品管理","open",null, 1).setAttr("url", "product/page/list"));
+//		map.put(111, new Tree(111,"管理员列表","open",null,11).setAttr("url", "emp/page/list"));
+//		map.put(112, new Tree(112,"新增管理员","open",null,11).setAttr("url", "emp/page/add"));
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class MenuController {
 		if(id==null){
 			id=-1;
 		}
-		boolean admin = emp.getRole().intValue()== Constant.ADMIN.intValue() ;
+		boolean admin = emp.getRole().intValue()== Constant.SUPERADMIN.intValue() ;
 		return getNodeListByPid(id, admin);
 	}
 }

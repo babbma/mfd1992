@@ -1,5 +1,8 @@
 package com.app.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -8,10 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.entity.Employee;
+import com.app.entity.easyui.DataGrid;
+import com.app.entity.easyui.Json;
+import com.app.entity.easyui.PageHelper;
 import com.app.service.EmployeeService;
 
 /**
@@ -71,5 +79,40 @@ public class EmployeeController {
 		return "employee/login";
 	}
 	
+	/**
+	 * 管理员列表
+	 * @param helper 分页对象
+	 * @param emp
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/list")
+	public DataGrid list(PageHelper helper,Employee emp ){
+		Map<String,Object> params = new HashMap<String, Object>();
+		return employeeService.findPageList(helper, params);
+	}
+	
+	/**
+	 * 添加管理员
+	 * @param emp 管理员
+	 * @param area 管理员管理的区域
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/save")
+	public Json save(Employee emp,@RequestParam("area[]")Integer[] area){
+		Json json = new Json();
+		try {
+			employeeService.save(emp, area);
+			json.setSuccess(true);
+			json.setMsg("添加成功！");
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error(e.getMessage());
+			json.setSuccess(false);
+			json.setMsg(e.getMessage());
+		}
+		return json;
+	}
 	
 }

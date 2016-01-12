@@ -1,5 +1,6 @@
 package com.app.util;
 
+import com.app.entity.easyui.PageHelper;
 import com.app.entity.sub.PageBean;
 
 public class PageUtil {
@@ -26,5 +27,14 @@ public class PageUtil {
 		if(bean.getPageNumber()> totalPages){
 			bean.setPageNumber(totalPages);
 		}
+	}
+	
+	/**
+	 * 将pagehelper转化成pagebean
+	 * @param helper 
+	 * @return
+	 */
+	public static PageBean convert(PageHelper helper){
+		return new PageBean(helper.getRows(),helper.getPage());
 	}
 }

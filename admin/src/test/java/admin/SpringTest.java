@@ -37,7 +37,7 @@ public class SpringTest {
 		emp.setPhone("admin");
 		emp.setName("admin");
 		emp.setPwd(MD5Util.MD5("admin"));
-		emp.setRole(Constant.ADMIN);
+		emp.setRole(Constant.SUPERADMIN);
 		employeeDao.save(emp);
 	}
 

@@ -8,6 +8,13 @@ public class PageBean {
 	private Integer pageSize;
 	private Integer pageNumber;
 	private List<?> rows;
+	
+	public PageBean(Integer pageSize, Integer pageNumber) {
+		super();
+		this.pageSize = pageSize;
+		this.pageNumber = pageNumber;
+	}
+
 	public PageBean(){
 	}
 	
