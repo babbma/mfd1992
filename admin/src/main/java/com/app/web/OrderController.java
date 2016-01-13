@@ -1,5 +1,7 @@
 package com.app.web;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +57,7 @@ public class OrderController {
 	 * @param likeStore
 	 * @param emp
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping("/list")
 	private @ResponseBody DataGrid list(PageHelper helper,
@@ -64,7 +67,7 @@ public class OrderController {
 			@RequestParam(required=false)String likeCode,
 			@RequestParam(required=false)String likeDealer,
 			@RequestParam(required=false)String likeStore,
-			@ModelAttribute("u")Employee emp,@ModelAttribute("as")Set<Area> as){
+			@ModelAttribute("u")Employee emp,@ModelAttribute("as")Set<Area> as) throws UnsupportedEncodingException{
 		Map<String, Object> params = new HashMap<String, Object>();
 		if(beginTime==null && endTime==null){
 			params.put("beginTime", DateUtil.currentDayBegin());
@@ -80,13 +83,18 @@ public class OrderController {
 			params.put("ostatus", status);
 		}
 		if(likeCode!=null&& !"".equals(likeCode)){
-			params.put("likeCode", likeCode);
+			log.info("likeCode {}" ,URLDecoder.decode(likeCode, "utf-8"));
+			params.put("likeCode", URLDecoder.decode(likeCode, "utf-8"));
 		}
 		if(likeDealer!=null && !"".equals(likeDealer)){
-			params.put("likeDealer", likeDealer);
+			log.info("likeDealerName {}" ,URLDecoder.decode(likeDealer, "utf-8"));
+			params.put("likeDealerName", URLDecoder.decode(likeDealer, "utf-8"));
+//			params.put("likeDealerName", likeDealer);
 		}
 		if(likeStore!=null && !"".equals(likeStore)){
-			params.put("likeStore", likeStore);
+			log.info("likeStoreName {}" , URLDecoder.decode(likeStore, "utf-8"));
+			params.put("likeStoreName", URLDecoder.decode(likeStore, "utf-8"));
+//			params.put("likeStoreName", likeStore);
 		}
 		emp.setArea(as);
 		return orderService.findPageList(helper, params, emp);

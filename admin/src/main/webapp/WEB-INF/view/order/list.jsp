@@ -26,21 +26,21 @@ function saveGoodsCategory(){
 		<!-- 订单信息 -->
 		<table id="datagrid" title="订单列表" class="easyui-datagrid" fit="true"
 			url="order/list" toolbar="#toolbar" pagination="true"
-			fitColumns="true" singleSelect="true" rownumbers="true"
+			fitColumns="true" singleSelect="true" rownumbers="true" data-options="method:'post'"
 			idField="id" border="false" nowrap="false">
 			<thead>
 				<tr>
-					<th field="order" width="100" data-options="formatter:function(value,row,index){return value.code;}">订单编号</th>
-					<th field="product" width="100" data-options="formatter:function(value,row,index){return value.code;}">商品名称</th>
-					<th field="product" width="100" data-options="formatter:function(value,row,index){return value.code;}">抛货单价</th>
-					<th field="orderList" width="100" data-options="formatter:function(value,row,index){return value.code;}">订单数量</th>
-					<th field="order" width="100" data-options="formatter:function(value,row,index){return value.code;}">订单时间</th>
-					<th field="order" width="100" data-options="formatter:function(value,row,index){return value.code;}">总金额</th>
-					<th field="order" width="100" data-options="formatter:function(value,row,index){return value.code;}">运费</th>
-					<th field="store" width="100" data-options="formatter:function(value,row,index){return value.code;}">配送地区</th>
-					<th field="dealer" width="100" data-options="formatter:function(value,row,index){return value.code;}">经销商</th>
-					<th field="store" width="100" data-options="formatter:function(value,row,index){return value.code;}">门店</th>
-					<th field="order" width="100" data-options="formatter:function(value,row,index){return value.code;}">状态</th>
+					<th field="ordercode" width="80" data-options="formatter:function(value,row,index){return row.order.code;}">订单编号</th>
+					<th field="productname" width="100" data-options="formatter:function(value,row,index){return row.product.name}">商品名称</th>
+					<th field="productprice" width="100" data-options="formatter:function(value,row,index){return row.product.price;}">抛货单价</th>
+					<th field="orderListNumber" width="100" data-options="formatter:function(value,row,index){return row.orderList.productNumber;}">订单数量</th>
+					<th field="orderDate" width="100" data-options="formatter:function(value,row,index){return row.order.orderDate;}">订单时间</th>
+					<th field="orderTotalPrice" width="100" data-options="formatter:function(value,row,index){return row.order.totalPrice;}">总金额</th>
+					<th field="orderExpressFee" width="100" data-options="formatter:function(value,row,index){return row.order.expressFee;}">运费</th>
+					<th field="storeAddress" width="100" data-options="formatter:function(value,row,index){return row.store.address;}">配送地区</th>
+					<th field="dealername" width="100" data-options="formatter:function(value,row,index){return row.dealer.name;}">经销商</th>
+					<th field="storename" width="100" data-options="formatter:function(value,row,index){return row.store.name;}">门店</th>
+					<th field="orderstatus" width="100" data-options="formatter:function(value,row,index){var status = row.order.status;if(status==0)return '未付款';if(status==1)return '未发货';if(status==2)return '已发货';if(status==3)return '已确认（交易完成）';if(status==4)return '申请退款';if(status==5)return '已退款';}">状态</th>
 				</tr>
 			</thead>
 		</table>

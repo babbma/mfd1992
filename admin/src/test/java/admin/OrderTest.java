@@ -33,6 +33,9 @@ public class OrderTest {
 		helper.setRows(10);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("likeDealerName", "超级");
+		params.put("likeStoreName", "超级");
+		params.put("likeCode", "3333");
 		
 		Employee emp = employeeService.findById(2);
 		DataGrid dg = orderService.findPageList(helper, params, emp);

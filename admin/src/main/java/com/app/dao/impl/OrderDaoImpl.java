@@ -35,7 +35,7 @@ public class OrderDaoImpl extends ObjectDaoImpl<Order> implements OrderDao {
 		// TODO Auto-generated method stub
 		String temp = super.addParams(hql, params);
 		if(params.containsKey("areaIds")){
-			temp+=" and d.area.id in (:areaIds)";
+			temp+=" and d.area.parentId in (:areaIds)";
 		}
 		if(params.containsKey("ostatus")){
 			temp+=" and o.status = :ostatus";
@@ -48,15 +48,15 @@ public class OrderDaoImpl extends ObjectDaoImpl<Order> implements OrderDao {
 		}
 		if(params.containsKey("likeCode")){
 			temp+=" and o.code like :likeCode";
-			params.put("likeCode", "'%"+params.get("likeCode")+"%'");
+			params.put("likeCode", "%"+params.get("likeCode")+"%");
 		}
 		if(params.containsKey("likeDealerName")){
 			temp+=" and d.name  like :likeDealerName";
-			params.put("likeDealerName", "'%"+params.get("likeDealerName")+"%'");
+			params.put("likeDealerName", "%"+params.get("likeDealerName")+"%");
 		}
 		if(params.containsKey("likeStoreName")){
 			temp+=" and s.name like :likeStoreName";
-			params.put("likeStoreName", "'%"+params.get("likeStoreName")+"%'");
+			params.put("likeStoreName", "%"+params.get("likeStoreName")+"%");
 		}
 		return temp;
 	}

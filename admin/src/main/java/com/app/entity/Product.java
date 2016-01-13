@@ -39,6 +39,7 @@ public class Product implements Serializable {
 	@Column(name="brand_id")
 	private Integer brandId;
 	private Integer imgs;
+	@Column(name="`desc`")
 	private String desc;
 	@Column(name="min_number")
 	private Integer minNumber;

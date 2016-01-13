@@ -21,6 +21,7 @@ import com.app.entity.datagrid.OrderDG;
 import com.app.entity.easyui.DataGrid;
 import com.app.entity.easyui.PageHelper;
 import com.app.entity.sub.PageBean;
+import com.app.exception.CustomException;
 import com.app.service.OrderService;
 import com.app.util.PageUtil;
 
@@ -29,6 +30,15 @@ public class OrderServiceImpl implements OrderService{
 
 	@Resource
 	private OrderDao orderDao;
+	
+	
+	@Override
+	public void save(Order order) throws CustomException {
+		// TODO Auto-generated method stub
+		orderDao.save(order);
+	}
+
+
 	@Override
 	public DataGrid findPageList(PageHelper helper, Map<String, Object> params,Employee emp) {
 		// TODO Auto-generated method stub

@@ -46,7 +46,7 @@ public class Store implements Serializable{
 	private Integer staff_number;
 	@Column(name="planting_duration")
 	private Integer plantingDuration;
-	private Double convering;
+	private Double covering;
 	private Integer imgs;
 	@Column(name="business_license")
 	private String businessLicense;
@@ -145,11 +145,11 @@ public class Store implements Serializable{
 	public void setPlantingDuration(Integer plantingDuration) {
 		this.plantingDuration = plantingDuration;
 	}
-	public Double getConvering() {
-		return convering;
+	public Double getCovering() {
+		return covering;
 	}
-	public void setConvering(Double convering) {
-		this.convering = convering;
+	public void setCovering(Double covering) {
+		this.covering = covering;
 	}
 	public Integer getImgs() {
 		return imgs;

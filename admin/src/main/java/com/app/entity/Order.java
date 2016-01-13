@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.app.entity.serialize.DateSerialize;
+
 /**
  * 订单表
  * @author Administrator
@@ -57,6 +61,7 @@ public class Order implements Serializable {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	@JsonSerialize(using=DateSerialize.class)
 	public Date getOrderDate() {
 		return orderDate;
 	}

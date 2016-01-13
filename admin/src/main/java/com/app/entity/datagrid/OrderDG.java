@@ -70,6 +70,12 @@ public class OrderDG implements Serializable{
 	public void setStore(Store store) {
 		this.store = store;
 	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 	
 }

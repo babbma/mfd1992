@@ -44,13 +44,13 @@ public class Employee implements Serializable {
 	private String name;
 	private Integer role;
 	@ManyToMany(targetEntity=Store.class,fetch=FetchType.LAZY)
-	@JoinTable(joinColumns={@JoinColumn(name="emplpoyee_id")},
+	@JoinTable(joinColumns={@JoinColumn(name="employee_id")},
 				inverseJoinColumns={@JoinColumn(name="store_id")},
 				name="store_sale")
 	private Set<Store> store ;
 	
 	@ManyToMany(targetEntity=Area.class,fetch=FetchType.LAZY)
-	@JoinTable(joinColumns={@JoinColumn(name="emplpoyee_id")},
+	@JoinTable(joinColumns={@JoinColumn(name="employee_id")},
 				inverseJoinColumns={@JoinColumn(name="area_id")},
 				name="area_sale")
 	private Set<Area> area ;

@@ -104,6 +104,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 			throw new CustomException(e.getMessage(),e);
 		}
 	}
+	
+	
+	@Override
+	public void save(Employee emp) throws CustomException {
+		// TODO Auto-generated method stub
+		employeeDao.save(emp);
+	}
 	@Override
 	public void update(Employee emp, Integer[] area) throws CustomException {
 		// TODO Auto-generated method stub
