@@ -30,6 +30,12 @@
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
+		<!--例如，数据库的表名及字段名的所有字符都要大写，表名以“S”结尾。对于Customer类，对应的数据库表名为CUSTOMERS。为了在映射文件中遵守这种命名约定-->
+		<!-- 一般会在自动生成表名的时候用到 -->
+		<!-- 
+		<property name="namingStrategy" >
+			<bean class="org.hibernate.cfg.ImprovedNamingStrategy"></bean>
+		</property> -->
 		<property name="packagesToScan" value="com.app.entity"></property>
 	</bean>
 	<bean id="transactionManager"
